@@ -1,4 +1,7 @@
-﻿internal class Program
+﻿// Strategy pattern
+// Defines a family of algorithms (in this case the behaviors), encapsulate each one, and makes them interchangeable.
+// Strategy lets the algorithm vary independently from clients that use it.
+internal class Program
 {
     private static void Main(string[] args)
     {
