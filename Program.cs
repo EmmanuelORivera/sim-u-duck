@@ -6,6 +6,11 @@
         mallard.PerformQuack();
         mallard.PerformFly();
 
+        Duck model = new ModelDuck();
+        model.PerformFly();
+        model.SetFlyBehavior(new FlyRocketPowered());
+        model.PerformFly();
+
     }
 }
 
@@ -33,6 +38,14 @@ public abstract class Duck
     public void swim()
     {
         System.Console.WriteLine("All ducks float, even decoys!");
+    }
+    public void SetFlyBehavior(IFlyBehavior flyBehavior)
+    {
+        this.flyBehavior = flyBehavior;
+    }
+    public void SetQuackBehavior(IQuackBehavior quackBehavior)
+    {
+        this.quackBehavior = quackBehavior;
     }
 }
 
@@ -98,5 +111,26 @@ public class MallardDuck : Duck
     public override void Display()
     {
         System.Console.WriteLine("I'm a real Mallard duck");
+    }
+}
+
+public class ModelDuck : Duck
+{
+    public ModelDuck()
+    {
+        flyBehavior = new FlyNoWay();
+        quackBehavior = new Quack();
+    }
+    public override void Display()
+    {
+        System.Console.WriteLine("I'm a model duck");
+    }
+}
+
+public class FlyRocketPowered : IFlyBehavior
+{
+    public void Fly()
+    {
+        System.Console.WriteLine("I'm flying with a rocket!");
     }
 }
